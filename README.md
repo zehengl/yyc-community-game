@@ -20,3 +20,8 @@ A Streamlit app for YYC community guessing game
     streamlit run streamlit_app.py
 
 ## Credits
+
+- [Logo][1] by [Vlad Marin][2]
+
+[1]: https://www.iconfinder.com/icons/190299/games_red_quiz_icon
+[2]: https://www.iconfinder.com/quizanswers
