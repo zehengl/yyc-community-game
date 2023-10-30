@@ -1,0 +1,17 @@
+ignores =[]
+path = "requirements-dev.txt"
+target = "latest"
+no_ssl_verify = false
+ignore_warning = false
+show_full_path = false
+upgrade = false
+no_color = false
+filter = []
+no_recursive = false
+ignore_additional_labels = false
+default_venv = ".venv"
+interactive = false
+txt = false
+init = false
+extra = []
+pre = false
