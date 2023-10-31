@@ -92,7 +92,5 @@ if all(
 ):
     st.write(f"You score {score} out of {total} {thumb}")
 
-refresh = st.button("Refresh")
-if refresh:
-    st.cache_data.clear()
-    st.rerun()
+
+st.button("Refresh", on_click=st.cache_data.clear)
