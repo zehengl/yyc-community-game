@@ -33,6 +33,25 @@ def get_schools_sample(df):
     return df.sample(4)
 
 
+@st.cache_data
+def get_recreation_facilities_sample(df):
+    return df.sample(4)
+
+
+@st.cache_data
+def get_transit_stops_sample(df):
+    sample = df.sample(4)
+    sample["transit_stops"] = sample["bus_stops"] + sample["lrt_stations"]
+    return sample
+
+
+@st.cache_data
+def get_tree_coverage_sample(df):
+    sample = df.sample(4)
+    sample["tree_coverage"] = sample["tree_canopy_2022"] / sample["area"]
+    return sample
+
+
 df = load_df()
 
 with st.expander("Study the dataset"):
@@ -41,7 +60,7 @@ with st.expander("Study the dataset"):
 
 st.header("Questions")
 
-score, total = 0, 3
+score, total = 0, 6
 
 df_area = get_area_sample(df)
 ans_area = st.radio(
@@ -75,6 +94,49 @@ ans_schools = st.radio(
 if (
     ans_schools
     in df_schools["name"][df_schools["schools"] == df_schools["schools"].max()].tolist()
+):
+    score += 1
+
+df_recreation_facilities = get_recreation_facilities_sample(df)
+ans_recreation_facilities = st.radio(
+    ":blue[Which community has the most recreation facilities?]",
+    df_recreation_facilities["name"],
+    index=None,
+)
+if (
+    ans_recreation_facilities
+    in df_recreation_facilities["name"][
+        df_recreation_facilities["recreation_facilities"]
+        == df_recreation_facilities["recreation_facilities"].max()
+    ].tolist()
+):
+    score += 1
+
+df_transit_stops = get_transit_stops_sample(df)
+ans_transit_stops = st.radio(
+    ":blue[Which community has the most transit stops?]",
+    df_transit_stops["name"],
+    index=None,
+)
+if (
+    ans_transit_stops
+    in df_transit_stops["name"][
+        df_transit_stops["transit_stops"] == df_transit_stops["transit_stops"].max()
+    ].tolist()
+):
+    score += 1
+
+df_tree_coverage = get_tree_coverage_sample(df)
+ans_tree_coverage = st.radio(
+    ":blue[Which community has the most tree coverage?]",
+    df_tree_coverage["name"],
+    index=None,
+)
+if (
+    ans_tree_coverage
+    in df_tree_coverage["name"][
+        df_tree_coverage["tree_coverage"] == df_tree_coverage["tree_coverage"].max()
+    ].tolist()
 ):
     score += 1
 
