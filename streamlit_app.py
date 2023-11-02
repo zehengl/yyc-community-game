@@ -60,7 +60,7 @@ with st.expander("Study the dataset"):
 
 st.header("Questions")
 
-score, total = 0, 6
+score, ans = 0, []
 
 df_area = get_area_sample(df)
 ans_area = st.radio(
@@ -68,6 +68,7 @@ ans_area = st.radio(
     df_area["name"],
     index=None,
 )
+ans.append(ans_area)
 if ans_area in df_area["name"][df_area["area"] == df_area["area"].max()].tolist():
     score += 1
 
@@ -77,6 +78,7 @@ ans_bikeways = st.radio(
     df_bikeways["name"],
     index=None,
 )
+ans.append(ans_bikeways)
 if (
     ans_bikeways
     in df_bikeways["name"][
@@ -91,6 +93,7 @@ ans_schools = st.radio(
     df_schools["name"],
     index=None,
 )
+ans.append(ans_schools)
 if (
     ans_schools
     in df_schools["name"][df_schools["schools"] == df_schools["schools"].max()].tolist()
@@ -103,6 +106,7 @@ ans_recreation_facilities = st.radio(
     df_recreation_facilities["name"],
     index=None,
 )
+ans.append(ans_recreation_facilities)
 if (
     ans_recreation_facilities
     in df_recreation_facilities["name"][
@@ -118,6 +122,7 @@ ans_transit_stops = st.radio(
     df_transit_stops["name"],
     index=None,
 )
+ans.append(ans_transit_stops)
 if (
     ans_transit_stops
     in df_transit_stops["name"][
@@ -132,6 +137,7 @@ ans_tree_coverage = st.radio(
     df_tree_coverage["name"],
     index=None,
 )
+ans.append(ans_tree_coverage)
 if (
     ans_tree_coverage
     in df_tree_coverage["name"][
@@ -140,18 +146,13 @@ if (
 ):
     score += 1
 
+total = len(ans)
 if score == total:
     thumb = ":100:"
 else:
     thumb = ":thumbsup:" if score / total > 0.4 else ":thumbsdown:"
 
-if all(
-    [
-        ans_area,
-        ans_bikeways,
-        ans_schools,
-    ]
-):
+if all(ans):
     st.write(f"You score {score} out of {total} {thumb}")
 
 
