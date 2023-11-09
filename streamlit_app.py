@@ -29,12 +29,29 @@ def get_bikeways_sample(df):
 
 
 @st.cache_data
+def get_pathways_sample(df):
+    return df.sample(4)
+
+
+@st.cache_data
+def get_tracks_sample(df):
+    sample = df.sample(4)
+    sample["tracks"] = sample["tracks_lrt"] + sample["tracks_railway"]
+    return sample
+
+
+@st.cache_data
 def get_schools_sample(df):
     return df.sample(4)
 
 
 @st.cache_data
 def get_recreation_facilities_sample(df):
+    return df.sample(4)
+
+
+@st.cache_data
+def get_attractions_sample(df):
     return df.sample(4)
 
 
@@ -143,6 +160,49 @@ if (
     in df_tree_coverage["name"][
         df_tree_coverage["tree_coverage"] == df_tree_coverage["tree_coverage"].max()
     ].tolist()
+):
+    score += 1
+
+df_pathways = get_pathways_sample(df)
+ans_pathways = st.radio(
+    ":blue[Which community has the longest pathways?]",
+    df_pathways["name"],
+    index=None,
+)
+ans.append(ans_pathways)
+if (
+    ans_pathways
+    in df_pathways["name"][
+        df_pathways["pathways"] == df_pathways["pathways"].max()
+    ].tolist()
+):
+    score += 1
+
+df_attractions = get_attractions_sample(df)
+ans_attractions = st.radio(
+    ":blue[Which community has the most attractions?]",
+    df_attractions["name"],
+    index=None,
+)
+ans.append(ans_attractions)
+if (
+    ans_attractions
+    in df_attractions["name"][
+        df_attractions["attractions"] == df_attractions["attractions"].max()
+    ].tolist()
+):
+    score += 1
+
+df_tracks = get_tracks_sample(df)
+ans_tracks = st.radio(
+    ":blue[Which community has the longest tracks?]",
+    df_tracks["name"],
+    index=None,
+)
+ans.append(ans_tracks)
+if (
+    ans_tracks
+    in df_tracks["name"][df_tracks["tracks"] == df_tracks["tracks"].max()].tolist()
 ):
     score += 1
 
