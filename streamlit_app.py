@@ -69,6 +69,12 @@ def get_tree_coverage_sample(df):
     return sample
 
 
+@st.cache_data
+def get_crimes_sample(df):
+    sample = df.sample(4)
+    return sample
+
+
 df = load_df()
 
 with st.expander("Study the dataset"):
@@ -203,6 +209,21 @@ ans.append(ans_tracks)
 if (
     ans_tracks
     in df_tracks["name"][df_tracks["tracks"] == df_tracks["tracks"].max()].tolist()
+):
+    score += 1
+
+df_crimes = get_crimes_sample(df)
+ans_crimes = st.radio(
+    ":blue[Which community has the most crimes?]",
+    df_crimes["name"],
+    index=None,
+)
+ans.append(ans_crimes)
+if (
+    ans_crimes
+    in df_crimes["name"][
+        df_crimes["crime_count"] == df_crimes["crime_count"].max()
+    ].tolist()
 ):
     score += 1
 
