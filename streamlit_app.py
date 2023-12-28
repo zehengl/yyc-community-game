@@ -1,5 +1,5 @@
-import streamlit as st
 import pandas as pd
+import streamlit as st
 
 st.set_page_config(page_title="yyc-community-game", page_icon=":question:")
 _, center, _ = st.columns([2, 1, 2])
