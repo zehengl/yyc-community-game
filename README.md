@@ -1,7 +1,3 @@
-<div align="center">
-    <img src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" alt="logo" height="128">
-</div>
-
 # yyc-community-game
 
 ![coding_style](https://img.shields.io/badge/code%20style-black-000000.svg)
@@ -21,9 +17,6 @@ A Streamlit app for YYC community guessing game
 
 ## Credits
 
-- [Logo][1] by [Vlad Marin][2]
-- [yyc-community-metrics][3]
+- [yyc-community-metrics][1]
 
-[1]: https://www.iconfinder.com/icons/190299/games_red_quiz_icon
-[2]: https://www.iconfinder.com/quizanswers
-[3]: https://github.com/zehengl/yyc-community-metrics
+[1]: https://github.com/zehengl/yyc-community-metrics
