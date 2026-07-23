@@ -225,7 +225,7 @@ total = len(ans)
 if score == total:
     thumb = ":100:"
 else:
-    thumb = ":thumbsup:" if score / total > 0.4 else ":thumbsdown:"
+    thumb = ":+1:" if score / total > 0.4 else ":-1:"
 
 if all(ans):
     st.write(f"You score {score} out of {total} {thumb}")
